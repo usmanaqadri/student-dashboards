@@ -1,0 +1,26 @@
+{
+  "name": "student-dashboards",
+  "version": "1.0.0",
+  "description": "## Project Description > CRUD application where students can READ their personalized dashboard. The app allows for the CREATION of a new student and their dashboard. Each dashboard can be UPDATED, by posting/changing grades for assignments. If a student drops out or is kicked out, their dashboard can be DELETED.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/student-dashboards/student-dashboards.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/student-dashboards/student-dashboards/issues"
+  },
+  "homepage": "https://gitlab.com/student-dashboards/student-dashboards#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.1"
+  }
+}
