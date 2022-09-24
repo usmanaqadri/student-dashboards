@@ -3,8 +3,7 @@ const express = require("express");
 //define router
 const router = express.Router();
 
-//req controller
-
+const ctrls = require("../controllers");
 
 //GET route to home page that will redirect user to a log in page
 router.get("/", (req, res) => {
@@ -12,9 +11,7 @@ router.get("/", (req, res) => {
 });
 
 //GET route to show index of students in class
-router.get("/studentDashboard", (req, res) => {
-  res.send("this is the index of students in the class");
-});
+router.get("/studentDashboard", ctrls.dashboards.index);
 
 //GET route to render a form to be able to submit a new student to the class with hmwk,projects,attendance
 router.get("/studentDashboard/new", (req, res) => {
@@ -27,18 +24,21 @@ router.get("/studentDashboard/:id", (req, res) => {
 });
 
 //GET route to edit a current student
-router.get("/studentDashboard/:id/edit",(req,res)=>{
-  res.send("this is where you can edit a student")
-})
+router.get("/studentDashboard/:id/edit", (req, res) => {
+  res.send("this is where you can edit a student");
+});
 
 //GET route brings user to a register page
-router.get("/users/register",(req,res)=>{
-  res.send("this is where you will register")
-})
+router.get("/users/register", (req, res) => {
+  res.send("this is where you will register");
+});
 
 //GET route to render a sign in page
-router.get("/users/signin",(req,res)=>{
-  res.send("this is where you sign in")
-})
+router.get("/users/signin", (req, res) => {
+  res.send("this is where you sign in");
+});
+
+// POST route to create a new student
+router.post("/studentDashboard", ctrls.dashboards.create);
 
 module.exports = router;
