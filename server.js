@@ -1,12 +1,26 @@
 // External module require express
 const express = require("express");
 
-//req express
+//req cors and adding whitelist
+const cors = require('cors')
+const whitelist = ['http://localhost:3000']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by cors'))
+    }
+  }
+}
+
+//set app to equal express
 const app = express();
 
 require("dotenv").config();
 
 //middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -21,16 +35,9 @@ app.use("/", require("./routes/dashboard.routes"));
 //port connection
 const PORT = process.env.PORT || 3000;
 
-//base route
-app.get("/", (req, res) => {
-  res.send("hello group");
-});
 
 //app.listen for port
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
 
-// app.get('/' ,(req, res)=>{
-//     res.send("hello group")
-// })
