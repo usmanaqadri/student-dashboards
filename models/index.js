@@ -1,3 +1,4 @@
 module.exports = {
-  Dashboard: require("./Dashboard.js"),
+  Dashboard: require("./dashboard.js"),
+  User: require("./users.js"),
 };

@@ -4,11 +4,19 @@ const express = require("express");
 //req express
 const app = express();
 
-require("dotenv").config();
-
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+require("dotenv").config();
+const session = require("express-session");
+const SESSION_SECRET = process.env.SESSION_SECRET;
+app.use(
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 const routes = require("./routes");
 
@@ -17,6 +25,7 @@ require("./config/db.connections");
 
 //conection to routes
 app.use("/", require("./routes/dashboard.routes"));
+app.use("/", require("./routes/users.routes"));
 
 //port connection
 const PORT = process.env.PORT || 3000;

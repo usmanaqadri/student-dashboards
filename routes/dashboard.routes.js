@@ -5,11 +5,6 @@ const router = express.Router();
 
 const ctrls = require("../controllers");
 
-//GET route to home page that will redirect user to a log in page
-router.get("/", (req, res) => {
-  res.send("this is the log in page");
-});
-
 //GET route to show index of students in class
 router.get("/studentDashboard", ctrls.dashboards.index);
 
@@ -26,16 +21,6 @@ router.get("/studentDashboard/:id", (req, res) => {
 //GET route to edit a current student
 router.get("/studentDashboard/:id/edit", (req, res) => {
   res.send("this is where you can edit a student");
-});
-
-//GET route brings user to a register page
-router.get("/users/register", (req, res) => {
-  res.send("this is where you will register");
-});
-
-//GET route to render a sign in page
-router.get("/users/signin", (req, res) => {
-  res.send("this is where you sign in");
 });
 
 // POST route to create a new student
