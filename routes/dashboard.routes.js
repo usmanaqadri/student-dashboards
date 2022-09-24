@@ -23,5 +23,19 @@ router.get("/studentDashboard/:id", (req, res) => {
   res.send("this is where the students info is held");
 });
 
+//GET route to edit a current student
+router.get("/studentDashboard/:id/edit",(req,res)=>{
+  res.send("this is where you can edit a student")
+})
+
+//GET route brings user to a register page
+router.get("/users/register",(req,res)=>{
+  res.send("this is where you will register")
+})
+
+//GET route to render a sign in page
+router.get("/users/signin",(req,res)=>{
+  res.send("this is where you sign in")
+})
 
 module.exports = router;
