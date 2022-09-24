@@ -38,7 +38,7 @@ router.get("/users/signin", (req, res) => {
   res.send("this is where you sign in");
 });
 
-// SEED route to put in some dummy data
-router.post("/studentDashboard", ctrls.dashboards.seed);
+// POST route to create a new student
+router.post("/studentDashboard", ctrls.dashboards.create);
 
 module.exports = router;
