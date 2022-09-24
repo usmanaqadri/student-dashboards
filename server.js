@@ -1,6 +1,5 @@
 // External module require express
 const express = require("express");
-require("dotenv").config;
 
 const app = express();
 
@@ -8,7 +7,7 @@ require("dotenv").config();
 
 const routes = require("./routes");
 
-app.use("/", require("./routes/dashboard.routes"));
+app.use("/dashboard", routes.dashboards);
 
 const PORT = process.env.PORT || 3003;
 
