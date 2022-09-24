@@ -4,9 +4,9 @@ const express = require("express");
 //req express
 const app = express();
 
-require('dotenv').config()
+require("dotenv").config();
 
-const routes = require('./routes')
+const routes = require("./routes");
 
 //req db connection
 require("./config/db.connections");
