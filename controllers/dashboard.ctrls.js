@@ -18,4 +18,29 @@ const create = (req, res) => {
   });
 };
 
-module.exports = { index, create };
+const destroy = (req, res) => {
+  db.Dashboard.findByIdAndDelete(req.params.id, (error, deletedDashboard) => {
+    if (!deletedDashboard)
+      return res.status(400).json({ error: "Dashboard not found" });
+    if (error) return res.status(400).json({ error: error.message });
+    return res.status(200).json({
+      message: `Dashboard ${deletedDashboard.name} was successfully deleted`,
+    });
+  });
+};
+
+const update = (req, res) => {
+  db.Dashboard.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: req.body,
+    },
+    { new: true },
+    (err, updatedDashboard) => {
+      if (err) return res.status(400).json({ error: err.message });
+      return res.status(200).json(updatedDashboard);
+    }
+  );
+};
+
+module.exports = { index, create, destroy, update };

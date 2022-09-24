@@ -40,5 +40,9 @@ router.get("/users/signin", (req, res) => {
 
 // POST route to create a new student
 router.post("/studentDashboard", ctrls.dashboards.create);
+//DELETE route to delete student
+router.delete("/studentDashboard/:id", ctrls.dashboards.destroy);
+//PUT route to update a student
+router.put('/studentDashboard/:id', ctrls.dashboards.update)
 
 module.exports = router;
