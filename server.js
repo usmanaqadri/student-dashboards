@@ -11,11 +11,11 @@ app.use('/', require('./routes/dashboard.routes'));
 
 const PORT = process.env.PORT || 3003;
 
-require('./config/db.connections.js')
+require('./config/db.connections')
 
-app.get('/' ,(req, res)=>{
-    res.send("hello group")
-})
+// app.get('/' ,(req, res)=>{
+//     res.send("hello group")
+// })
 
 app.listen(PORT, ()=>{
     console.log('Listening on', PORT)
