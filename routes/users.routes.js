@@ -8,6 +8,10 @@ const ctrls = require("../controllers");
 //GET route brings user to a register page
 router.post("/register", ctrls.users.register);
 
+router.get("/signin", ctrls.users.signInPage);
+
+router.get("/register", ctrls.users.registerPage);
+
 //GET route to home page that will redirect user to a log in page
 router.post("/signin", ctrls.users.signIn);
 

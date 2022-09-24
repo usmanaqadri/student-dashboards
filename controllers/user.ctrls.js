@@ -2,6 +2,14 @@ const bcrypt = require("bcrypt");
 
 const db = require("../models");
 
+const signInPage = (req, res) => {
+  res.send("sign in page");
+};
+
+const registerPage = (req, res) => {
+  res.send("register page");
+};
+
 const register = (req, res) => {
   const salt = bcrypt.genSaltSync(10);
   req.body.password = bcrypt.hashSync(req.body.password, salt);
@@ -42,4 +50,4 @@ const signOut = (req, res) => {
   res.redirect("/signin");
 };
 
-module.exports = { register, signIn, signOut };
+module.exports = { register, signIn, signOut, signInPage, registerPage };
