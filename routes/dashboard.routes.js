@@ -3,9 +3,12 @@ const express = require("express");
 //define router
 const router = express.Router();
 
+//req controller
+
+
 //GET route to home page that will redirect user to a log in page
 router.get("/", (req, res) => {
-  res.send("this is the log in page");
+  res.redirect('/users/signin')
 });
 
 //GET route to show index of students in class
