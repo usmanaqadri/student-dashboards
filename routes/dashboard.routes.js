@@ -3,15 +3,15 @@ const express = require("express");
 //define router
 const router = express.Router();
 
+const ctrls = require("../controllers");
+
 //GET route to home page that will redirect user to a log in page
 router.get("/", (req, res) => {
   res.send("this is the log in page");
 });
 
 //GET route to show index of students in class
-router.get("/studentDashboard", (req, res) => {
-  res.send("this is the index of students in the class");
-});
+router.get("/studentDashboard", ctrls.dashboards.index);
 
 //GET route to render a form to be able to submit a new student to the class with hmwk,projects,attendance
 router.get("/studentDashboard/new", (req, res) => {
@@ -37,5 +37,8 @@ router.get("/users/register", (req, res) => {
 router.get("/users/signin", (req, res) => {
   res.send("this is where you sign in");
 });
+
+// SEED route to put in some dummy data
+router.post("/studentDashboard", ctrls.dashboards.seed);
 
 module.exports = router;

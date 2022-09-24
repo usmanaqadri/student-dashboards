@@ -6,6 +6,10 @@ const app = express();
 
 require("dotenv").config();
 
+//middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const routes = require("./routes");
 
 //req db connection
@@ -13,10 +17,6 @@ require("./config/db.connections");
 
 //conection to routes
 app.use("/", require("./routes/dashboard.routes"));
-
-//middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 //port connection
 const PORT = process.env.PORT || 3000;
