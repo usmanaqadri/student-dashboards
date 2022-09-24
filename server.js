@@ -4,8 +4,9 @@ const express = require("express");
 //req express
 const app = express();
 
-//req routes
-const routes = require("./routes");
+require('dotenv').config()
+
+const routes = require('./routes')
 
 //req db connection
 require("./config/db.connections");
@@ -30,4 +31,7 @@ app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
 
+// app.get('/' ,(req, res)=>{
+//     res.send("hello group")
+// })
 
