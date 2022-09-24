@@ -1,22 +1,36 @@
 // External module require express
 const express = require("express");
 
+//req express
 const app = express();
 
 require("dotenv").config();
 
 const routes = require("./routes");
 
-app.use("/dashboard", routes.dashboards);
+//req db connection
+require("./config/db.connections");
 
-const PORT = process.env.PORT || 3003;
+//conection to routes
+app.use("/", require("./routes/dashboard.routes"));
 
-require("./config/db.connections.js");
+//middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+//port connection
+const PORT = process.env.PORT || 3000;
+
+//base route
 app.get("/", (req, res) => {
   res.send("hello group");
 });
 
+//app.listen for port
 app.listen(PORT, () => {
-  console.log("Listening on", PORT);
+  console.log(`Listening on http://localhost:${PORT}`);
 });
+
+// app.get('/' ,(req, res)=>{
+//     res.send("hello group")
+// })
