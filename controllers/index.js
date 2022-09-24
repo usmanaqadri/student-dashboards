@@ -1,3 +1,3 @@
 module.exports = {
-  dashboard: require("./dashboard.routes.js"),
+  dashboards: require("./dashboard.ctrls.js"),
 };
