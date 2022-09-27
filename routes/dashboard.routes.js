@@ -5,14 +5,11 @@ const router = express.Router();
 
 const ctrls = require("../controllers");
 
-<<<<<<< routes/dashboard.routes.js
-=======
 //GET route to home page that will redirect user to a log in page
 router.get("/", (req, res) => {
-  res.redirect('/signin')
+  res.redirect("/users/signin");
 });
 
->>>>>>> routes/dashboard.routes.js
 //GET route to show index of students in class
 router.get("/studentDashboard", ctrls.dashboards.index);
 
@@ -31,11 +28,21 @@ router.get("/studentDashboard/:id/edit", (req, res) => {
   res.send("this is where you can edit a student");
 });
 
+//GET route brings user to a register page
+router.get("/users/register", (req, res) => {
+  res.send("this is where you will register");
+});
+
+//GET route to render a sign in page
+router.get("/users/signin", (req, res) => {
+  res.send("this is where you sign in");
+});
+
 // POST route to create a new student
 router.post("/studentDashboard", ctrls.dashboards.create);
 //DELETE route to delete student
 router.delete("/studentDashboard/:id", ctrls.dashboards.destroy);
 //PUT route to update a student
-router.put('/studentDashboard/:id', ctrls.dashboards.update)
+router.put("/studentDashboard/:id", ctrls.dashboards.update);
 
 module.exports = router;
