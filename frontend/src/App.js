@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import "./App.css";
 
 async function fetchDashboards() {
@@ -8,12 +9,13 @@ async function fetchDashboards() {
   return dashboards;
 }
 
-function App() {
-  fetchDashboards().then((data) =>
-    console.log("here are the dashboards", data.dashboards)
-  );
-
-  return <div className="App">React App</div>;
+class App extends Component {
+  render() {
+    fetchDashboards().then((data) =>
+      console.log("here are the dashboards", data.dashboards)
+    );
+    return <div className="App">Hello</div>;
+  }
 }
 
 export default App;
