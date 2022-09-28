@@ -8,10 +8,13 @@ require("dotenv").config();
 const session = require("express-session");
 const SESSION_SECRET = process.env.SESSION_SECRET;
 //port connection
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.BACKEND_PORT || 3000;
 
 //adding whitelist
-const whitelist = ["http://localhost:3000", "http://localhost:3009"];
+const whitelist = [
+  `http://localhost:${PORT}`,
+  `http://localhost:${process.env.FRONTEND_PORT}`,
+];
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin) {
@@ -37,6 +40,10 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 const routes = require("./routes");
 
