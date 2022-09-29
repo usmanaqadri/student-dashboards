@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
 import "./App.css";
 
 async function fetchDashboards() {
@@ -14,7 +16,24 @@ class App extends Component {
     fetchDashboards().then((data) =>
       console.log("here are the dashboards", data.dashboards)
     );
-    return <div className="App">Hello</div>;
+    // return <div className="App">Hello</div>;
+    return (
+      <>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/">Books</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </>
+    );
   }
 }
 
