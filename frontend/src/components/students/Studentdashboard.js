@@ -52,6 +52,7 @@ getDashbaord = () => {
               return(
                  <tr key ={dashboard._id}>
                   <td>{dashboard.studentName}</td>
+                  <td> {dashboard.className}</td>
 
             </tr>
               )})}
