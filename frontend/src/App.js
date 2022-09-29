@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import StudentIndex from './components/students/Studentdashboard';
+import StudentId from './components/students/studentID';
+
 
 async function fetchDashboards() {
   const response = await fetch(
@@ -20,6 +22,7 @@ class App extends Component {
     <div className="app">
       
       <StudentIndex />
+      <StudentId />
     </div>
     
       )

@@ -12,7 +12,7 @@ async function fetchDashboards() {
 
 let baseURL = process.env.BACKEND_PORT
 
-class StudentIndex extends Component {
+class StudentId extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,16 +45,18 @@ getDashbaord = () => {
     
     return (
       <div className ='studentdashboard'>
-        <h1>STUDENT DASHBOARD</h1>
+        {/* <h1>{dashboard.studentName}</h1> */}
         <table>
           <tbody>
             {this.state.dashboards.map((dashboard)=>{
               return(
+                
                  <tr key ={dashboard._id}>
-                  <td><a href='./studentID.js'>{dashboard.studentName}</a></td>
-                  {/* <td> {dashboard.className}</td>
-                  <td>{dashboard.isEnrolled}</td>
-                  <td>{dashboard.assignments}</td> */}
+                    <h1>{dashboard.studentName}'s Dashboard</h1>
+                  {/* <td>{dashboard.studentName}</td> */}
+                  <td><h3>Enrolled</h3>{dashboard.isEnrolled}</td>
+                 <td><h3>Class</h3> {dashboard.className}</td>
+                  <td><h3>Assignments</h3>{dashboard.assignments}</td>
 
 
             </tr>
@@ -69,4 +71,4 @@ getDashbaord = () => {
   }
 }
 
-export default StudentIndex
+export default StudentId
