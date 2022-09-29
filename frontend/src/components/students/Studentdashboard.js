@@ -54,7 +54,8 @@ getDashbaord = () => {
                   <td>{dashboard.studentName}</td>
                   <td> {dashboard.className}</td>
                   <td>{dashboard.isEnrolled}</td>
-                  
+                  <td>{dashboard.assignments}</td>
+
 
             </tr>
               )})}
