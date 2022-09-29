@@ -54,9 +54,9 @@ getDashbaord = () => {
                  <tr key ={dashboard._id}>
                     <h1>{dashboard.studentName}'s Dashboard</h1>
                   {/* <td>{dashboard.studentName}</td> */}
-                  <td><h3>Enrolled</h3>{dashboard.isEnrolled}</td>
-                 <td><h3>Class</h3> {dashboard.className}</td>
-                  <td><h3>Assignments</h3>{dashboard.assignments}</td>
+                  <td><h3>Enrolled:</h3>{dashboard.isEnrolled}</td>
+                 <td><h3>Class:</h3> {dashboard.className}</td>
+                  <td><h3>Assignments:</h3>{dashboard.assignments}</td>
 
 
             </tr>
