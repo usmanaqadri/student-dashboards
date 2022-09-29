@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import StudentIndex from './components/students/Studentdashboard';
 
 async function fetchDashboards() {
   const response = await fetch(
@@ -7,6 +8,7 @@ async function fetchDashboards() {
   );
   const dashboards = await response.json();
   return dashboards;
+ 
 }
 
 class App extends Component {
@@ -14,7 +16,13 @@ class App extends Component {
     fetchDashboards().then((data) =>
       console.log("here are the dashboards", data.dashboards)
     );
-    return <div className="App">Hello</div>;
+    return (
+    <div className="app">
+      
+      <StudentIndex />
+    </div>
+    
+      )
   }
 }
 
