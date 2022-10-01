@@ -28,8 +28,6 @@ export class AllStudents extends Component {
       });
   };
   render() {
-    console.log("hey what is in my state?", this.state.dashboards);
-    console.log("what is in assignments");
     return (
       <div className="student-dashboard">
         <h1>Students</h1>
@@ -55,7 +53,7 @@ export class AllStudents extends Component {
                   <td>{dashboard.isEnrolled ? "Enrolled" : "Dropout"}</td>
                   <td>
                     {dashboard.assignments.length === 0
-                      ? "N/A"
+                      ? "No assignments yet"
                       : "something else"}
                   </td>
                 </tr>
