@@ -5,8 +5,8 @@ export class Header extends Component {
   render() {
     return (
       <header>
-        <h1>Student Dashboards</h1>
         <Nav />
+        <h1>Student Dashboards</h1>
       </header>
     );
   }
