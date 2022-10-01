@@ -6,9 +6,9 @@ const router = express.Router();
 const ctrls = require("../controllers");
 
 //GET route to home page that will redirect user to a log in page
-router.get("/", (req, res) => {
-  res.redirect("/users/signin");
-});
+// router.get("/", (req, res) => {
+//   res.redirect("/users/signin");
+// });
 
 //GET route to show index of students in class
 router.get("/studentDashboard", ctrls.dashboards.index);

@@ -1,21 +1,51 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from 'axios'
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
-export default function Signin() {
+function Signin() {
+  const [cookies] = useCookies([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (cookies.jwt) {
+      navigate("/");
+    }
+  }, [cookies, navigate]);
+
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
+  const generateError = (err) =>
+    toast.error(err, {
+      position: "bottom-right",
+    });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {data} = await axios.post("http://localhost:3009/register", {
-        ...values,
-      })
-    } catch(err) {
-      console.log(err)
+      const { data } = await axios.post(
+        "http://localhost:3009/Signin",
+        {
+          ...values,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (data) {
+        if (data.errors) {
+          const { email, password } = data.errors;
+          if (email) generateError(email);
+          else if (password) generateError(password);
+        } else {
+          navigate("/");
+        }
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -50,6 +80,9 @@ export default function Signin() {
           Don't have an account? <Link to="/register">Register</Link>
         </span>
       </form>
+      <ToastContainer />
     </div>
   );
 }
+
+export default Signin;

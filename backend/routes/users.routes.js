@@ -18,4 +18,6 @@ router.post("/signin", ctrls.users.signIn);
 //GET route to sign out of page
 router.get("/signout", ctrls.users.signOut);
 
+router.post("/", ctrls.users.checkUser);
+
 module.exports = router;
