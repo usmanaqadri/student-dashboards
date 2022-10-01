@@ -29,20 +29,35 @@ export class AllStudents extends Component {
   };
   render() {
     console.log("hey what is in my state?", this.state.dashboards);
+    console.log("what is in assignments");
     return (
       <div className="student-dashboard">
-        <h1>STUDENT DASHBOARD</h1>
+        <h1>Students</h1>
         <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Subject</th>
+              <th>Status</th>
+              <th>Current Grade</th>
+            </tr>
+          </thead>
           <tbody>
             {this.state.dashboards.map((dashboard) => {
               return (
                 <tr key={dashboard._id}>
                   <td>
-                    <Link to="/dashboard">{dashboard.studentName}</Link>
+                    <Link to={`/${dashboard._id}`}>
+                      {dashboard.studentName}
+                    </Link>
                   </td>
-                  {/* <td> {dashboard.className}</td>
-              <td>{dashboard.isEnrolled}</td>
-              <td>{dashboard.assignments}</td> */}
+                  <td> {dashboard.className}</td>
+                  <td>{dashboard.isEnrolled ? "Enrolled" : "Dropout"}</td>
+                  <td>
+                    {dashboard.assignments.length === 0
+                      ? "N/A"
+                      : "something else"}
+                  </td>
                 </tr>
               );
             })}
