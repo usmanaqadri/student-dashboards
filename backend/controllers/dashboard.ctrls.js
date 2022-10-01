@@ -10,6 +10,16 @@ const index = (req, res) => {
     });
   });
 };
+const show = (req, res) => {
+  db.Dashboard.findById(req.params.id, (error, dashboard) => {
+    if (error) return res.status(400).json({ error: error.message });
+
+    return res.status(200).json({
+      dashboard,
+      requestedAt: new Date().toLocaleString(),
+    });
+  });
+};
 
 const create = (req, res) => {
   db.Dashboard.create(req.body, (err, createdDashboard) => {
@@ -43,4 +53,4 @@ const update = (req, res) => {
   );
 };
 
-module.exports = { index, create, destroy, update };
+module.exports = { index, show, create, destroy, update };
