@@ -6,10 +6,15 @@ export default function Register() {
     email: "",
     password: "",
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <div>
       <h2>Register Account</h2>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label htmlFor="email">Email</label>
           <input
