@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./Pages/Register";
 import Signin from './Pages/Signin';
 import Secret from './Pages/Secret';
+import "react-toastify/dist/ReactToastify.css"
 
 export default function Authenticate() {
     return (

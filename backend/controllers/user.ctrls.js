@@ -1,6 +1,27 @@
-const bcrypt = require("bcrypt");
+const { User } = require("../models");
+const jwt = require("jsonwebtoken");
 
-const db = require("../models");
+const timeLimit = 1 * 24 * 60 * 60;
+
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.SESSION_SECRET, {
+    expiresIn: timeLimit,
+  });
+};
+
+const handleErrors = (err) => {
+  let errors = { email: "", password: "" };
+  if (err.code === 11000) {
+    errors.email = "Email is already Registered";
+    return errors;
+  }
+  if (err.message.includes("Users validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  }
+  return errors;
+};
 
 const signInPage = (req, res) => {
   res.send("sign in page");
@@ -10,40 +31,26 @@ const registerPage = (req, res) => {
   res.send("register page");
 };
 
-const register = (req, res) => {
-  const salt = bcrypt.genSaltSync(10);
-  req.body.password = bcrypt.hashSync(req.body.password, salt);
+const register = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.create({ email, password });
+    const token = createToken(user._id);
 
-  db.User.findOne({ username: req.body.username }, (err, userExists) => {
-    if (userExists) {
-      res.send("that username is taken");
-    } else {
-      db.User.create(req.body, (err, createdUser) => {
-        req.session.currentUser = createdUser;
-        res.redirect("/studentDashboard");
-      });
-    }
-  });
+    res.cookie("jwt", token, {
+      withCredentials: true,
+      httpOnly: false,
+      TimeLimit: timeLimit * 1000,
+    });
+    res.status(201).json({ user: user._id, created: true });
+  } catch (err) {
+    console.log(err);
+    const errors = handleErrors(err);
+    res.json({ errors, created: false });
+  }
 };
 
-const signIn = (req, res) => {
-  db.User.findOne({ username: req.body.username }, (err, foundUser) => {
-    if (foundUser) {
-      const validLogin = bcrypt.compareSync(
-        req.body.password,
-        foundUser.password
-      );
-      if (validLogin) {
-        req.session.currentUser = foundUser;
-        res.redirect("/studentDashboard");
-      } else {
-        res.send("Invalid username or password");
-      }
-    } else {
-      res.send("Invalid username or password");
-    }
-  });
-};
+const signIn = async (req, res, next) => {};
 
 const signOut = (req, res) => {
   req.session.destroy();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import axios from 'axios'
 
 export default function Signin() {
   const [values, setValues] = useState({
@@ -8,8 +8,15 @@ export default function Signin() {
     password: "",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const {data} = await axios.post("http://localhost:3009/register", {
+        ...values,
+      })
+    } catch(err) {
+      console.log(err)
+    }
   };
 
   return (
