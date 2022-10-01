@@ -1,4 +1,31 @@
+header {
+    background-color: rgb(154, 105, 223);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+}
+
+li {
+    padding: 0 30px;
+}
+a {
+    color: white;
+}
+
 td {
     border-bottom: 1px solid purple;
     padding: 10px 10px;
+}
+
+.student-dashboard a {
+    color: black
 }
