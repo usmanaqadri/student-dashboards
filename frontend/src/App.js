@@ -16,8 +16,15 @@ async function fetchDashboards() {
 
 class App extends Component {
   render() {
-    fetchDashboards().then((data) =>
-      console.log("here are the dashboards", data.dashboards)
+    return (
+      <>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new" element={<NewDashboard />} />
+          <Route path="/:id" element={<Dashboard />} />
+          <Route path="/:id/edit" element={<Edit />} />
+        </Routes>
+      </>
     );
     // return <div className="App">Hello</div>;
     return (
