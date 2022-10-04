@@ -30,14 +30,6 @@ const handleErrors = (err) => {
   return errors;
 };
 
-const signInPage = (req, res) => {
-  res.send("sign in page");
-};
-
-const registerPage = (req, res) => {
-  res.send("register page");
-};
-
 const register = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -96,16 +88,8 @@ const checkUser = (req, res, next) => {
   }
 };
 
-const signOut = (req, res) => {
-  req.session.destroy();
-  res.redirect("/signin");
-};
-
 module.exports = {
   register,
   signIn,
-  signOut,
-  signInPage,
-  registerPage,
   checkUser,
 };
