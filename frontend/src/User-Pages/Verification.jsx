@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
-export default function Secret() {
+export default function Verification() {
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies([]);
   useEffect(() => {
@@ -20,23 +20,9 @@ export default function Secret() {
         if (!data.status) {
           removeCookie("jwt");
           navigate("/Signin");
-        } else toast(`Hi ${data.user}`, { theme: "dark" });
+        } else toast(`Hi ${data.user}`);
       }
     };
     verifyUser();
   }, [cookies, navigate, removeCookie]);
-
-  const signOut = () => {
-    removeCookie("jwt");
-    navigate("/Signin");
-  };
-  return (
-    <>
-      <div>
-        <h1>Secret Page</h1>
-        <button onClick={signOut}>Log Out</button>
-        <ToastContainer />
-      </div>
-    </>
-  );
 }

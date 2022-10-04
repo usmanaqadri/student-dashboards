@@ -5,7 +5,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 
 export default function Register() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -34,7 +34,7 @@ export default function Register() {
           if (email) generateError(email);
           else if (password) generateError(password);
         } else {
-            navigate("/")
+          navigate("/");
         }
       }
     } catch (err) {
