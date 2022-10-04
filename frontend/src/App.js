@@ -5,12 +5,17 @@ import Dashboard from "./components/student-dashboard-page/Dashboard";
 import Edit from "./components/student-dashboard-page/Edit";
 import NewDashboard from "./components/student-dashboard-page/NewDashboard";
 import "./App.css";
+import Register from "./User-Pages/Register";
+import Signin from "./User-Pages/Signin";
+import "react-toastify/dist/ReactToastify.css";
 
 class App extends Component {
   render() {
     return (
       <>
         <Routes>
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/signin" element={<Signin />} />
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<NewDashboard />} />
           <Route path="/:id" element={<Dashboard />} />
