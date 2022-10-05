@@ -36,3 +36,7 @@ td {
     color: rgb(120, 89, 120);
     text-decoration: none;
 }
+
+.redirect a {
+    color: black !important;
+}

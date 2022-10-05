@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../Headers/RootHeader/Header";
+import { Link } from "react-router-dom";
+
+function withParams(Component) {
+  return (props) => <Component {...props} params={useParams()} />;
+}
 
 export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      studentId: "",
       assignments: [],
       className: "",
       studentName: "",
@@ -13,26 +18,13 @@ export class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    this.getDashboardId();
-    this.getDashboard();
+    const { id } = this.props.params;
+    this.getDashboard(id);
   }
 
-  componentDidUpdate() {
-    this.getDashboard();
-  }
-
-  getDashboardId = () => {
-    this.setState({
-      studentId:
-        window.location.href.split("/")[
-          window.location.href.split("/").length - 1
-        ],
-    });
-  };
-
-  getDashboard = () => {
+  getDashboard = (id) => {
     fetch(
-      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${this.state.studentId}`
+      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`
     )
       .then((res) => {
         if (res.status === 200) {
@@ -78,10 +70,13 @@ export class Dashboard extends Component {
               </tr>
             </tbody>
           </table>
+          <div className="redirect">
+            <Link to={`/${this.props.params.id}/edit`}>Edit</Link>
+          </div>
         </div>
       </>
     );
   }
 }
 
-export default Dashboard;
+export default withParams(Dashboard);
