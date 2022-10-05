@@ -37,6 +37,14 @@ td {
     text-decoration: none;
 }
 
+.register {
+    color: blue;
+}
+
+.signin {
+    color: blue;
+}
+
 .redirect a {
     color: black !important;
 }

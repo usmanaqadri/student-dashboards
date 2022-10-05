@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../Headers/RootHeader/Header";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import Verification from "../../User-Pages/Verification";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
