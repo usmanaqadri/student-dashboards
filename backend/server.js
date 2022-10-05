@@ -8,8 +8,16 @@ require("dotenv").config();
 const session = require("express-session");
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const cookieParser = require("cookie-parser");
+const path = require("path");
 //port connection
 const PORT = process.env.BACKEND_PORT || 3000;
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+  app.get("*", (req, res) => {
+    req.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
 
 //adding whitelist
 // const whitelist = [
