@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../Headers/RootHeader/Header";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import axios from "axios";
-import Verification from "../../User-Pages/Verification";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
 }
 
-export class Edit extends Component {
+export class EditForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,7 +74,6 @@ export class Edit extends Component {
   render() {
     return (
       <div>
-        <Header />
         <h1>Edit {this.state.studentName}'s Dashboard</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="studentName">Student Name: </label>
@@ -113,4 +107,4 @@ export class Edit extends Component {
   }
 }
 
-export default withParams(Edit);
+export default withParams(EditForm);

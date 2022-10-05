@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../Headers/RootHeader/Header";
 import { Link } from "react-router-dom";
 
 function withParams(Component) {
@@ -46,7 +45,6 @@ export class Dashboard extends Component {
   render() {
     return (
       <>
-        <Header />
         <div className="studentdashboard">
           {/* <h1>{dashboard.studentName}</h1> */}
           <table>

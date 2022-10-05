@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Show from "./components/student-dashboard-page/Show";
-import Edit from "./components/student-dashboard-page/Edit";
-import NewDashboard from "./components/student-dashboard-page/NewDashboard";
+import Show from "./components/Dashboard-Pages/Show";
+import Edit from "./components/Dashboard-Pages/Edit-page/Edit";
+import NewDashboard from "./components/Dashboard-Pages/New-page/New";
 import "./App.css";
 import Register from "./User-Pages/Register";
 import Signin from "./User-Pages/Signin";
