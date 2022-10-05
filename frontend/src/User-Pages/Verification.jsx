@@ -20,7 +20,7 @@ export default function Verification() {
         if (!data.status) {
           removeCookie("jwt");
           navigate("/Signin");
-        } else toast(`Hi ${data.user}`);
+        }
       }
     };
     verifyUser();

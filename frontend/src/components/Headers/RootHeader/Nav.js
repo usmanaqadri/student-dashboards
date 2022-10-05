@@ -2,7 +2,6 @@ import React, { Component, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
 import Signin from "../../../User-Pages/Signin";
 
 export default function Nav() {
