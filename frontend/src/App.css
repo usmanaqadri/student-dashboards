@@ -36,3 +36,11 @@ td {
     color: rgb(120, 89, 120);
     text-decoration: none;
 }
+
+.register {
+    color: blue;
+}
+
+.signin {
+    color: blue;
+}

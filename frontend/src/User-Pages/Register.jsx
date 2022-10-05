@@ -70,7 +70,7 @@ export default function Register() {
         </div>
         <button type="submit">Submit</button>
         <span>
-          Already have an account? <Link to="/signin">Sign In</Link>
+          Already have an account? <Link to="/signin" className="signin">Sign In</Link>
         </span>
       </form>
       <ToastContainer />
