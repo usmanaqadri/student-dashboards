@@ -1,53 +1,95 @@
-const bcrypt = require("bcrypt");
+const { User } = require("../models");
+const jwt = require("jsonwebtoken");
 
-const db = require("../models");
+const timeLimit = 1 * 24 * 60 * 60;
 
-const signInPage = (req, res) => {
-  res.send("sign in page");
-};
-
-const registerPage = (req, res) => {
-  res.send("register page");
-};
-
-const register = (req, res) => {
-  const salt = bcrypt.genSaltSync(10);
-  req.body.password = bcrypt.hashSync(req.body.password, salt);
-
-  db.User.findOne({ username: req.body.username }, (err, userExists) => {
-    if (userExists) {
-      res.send("that username is taken");
-    } else {
-      db.User.create(req.body, (err, createdUser) => {
-        req.session.currentUser = createdUser;
-        res.redirect("/studentDashboard");
-      });
-    }
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.SESSION_SECRET, {
+    expiresIn: timeLimit,
   });
 };
 
-const signIn = (req, res) => {
-  db.User.findOne({ username: req.body.username }, (err, foundUser) => {
-    if (foundUser) {
-      const validLogin = bcrypt.compareSync(
-        req.body.password,
-        foundUser.password
-      );
-      if (validLogin) {
-        req.session.currentUser = foundUser;
-        res.redirect("/studentDashboard");
+const handleErrors = (err) => {
+  let errors = { email: "", password: "" };
+
+  if (err.message === "Incorrect Email")
+    errors.email = "That email is not registered";
+
+  if (err.message === "Incorrect Password")
+    errors.password = "That password is incorrect";
+
+  if (err.code === 11000) {
+    errors.email = "Email is already Registered";
+    return errors;
+  }
+  if (err.message.includes("Users validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
+  }
+  return errors;
+};
+
+const register = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.create({ email, password });
+    const token = createToken(user._id);
+
+    res.cookie("jwt", token, {
+      withCredentials: true,
+      httpOnly: false,
+      TimeLimit: timeLimit * 1000,
+    });
+    res.status(201).json({ user: user._id, created: true });
+  } catch (err) {
+    console.log(err);
+    const errors = handleErrors(err);
+    res.json({ errors, created: false });
+  }
+};
+
+const signIn = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
+
+    res.cookie("jwt", token, {
+      withCredentials: true,
+      httpOnly: false,
+      TimeLimit: timeLimit * 1000,
+    });
+    res.status(200).json({ user: user._id, created: true });
+  } catch (err) {
+    console.log(err);
+    const errors = handleErrors(err);
+    res.json({ errors, created: false });
+  }
+};
+
+const checkUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.SESSION_SECRET, async (err, decodedToken) => {
+      if (err) {
+        res.json({ status: false });
+        next();
       } else {
-        res.send("Invalid username or password");
+        const user = await User.findById(decodedToken.id);
+        if (user) res.json({ status: true, user: user.email });
+        else res.json({ status: false });
+        next();
       }
-    } else {
-      res.send("Invalid username or password");
-    }
-  });
+    });
+  } else {
+    res.json({ status: false });
+    next();
+  }
 };
 
-const signOut = (req, res) => {
-  req.session.destroy();
-  res.redirect("/signin");
+module.exports = {
+  register,
+  signIn,
+  checkUser,
 };
-
-module.exports = { register, signIn, signOut, signInPage, registerPage };

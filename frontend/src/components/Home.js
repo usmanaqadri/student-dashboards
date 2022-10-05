@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import Header from "./Headers/RootHeader/Header";
 import AllStudents from "./AllStudents";
+import Verification from "../User-Pages/Verification";
 
-export class Home extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <AllStudents />
-      </div>
-    );
-  }
+export default function Home() {
+  Verification();
+  return (
+    <div>
+      <Header />
+      <AllStudents />
+    </div>
+  );
 }
-
-export default Home;

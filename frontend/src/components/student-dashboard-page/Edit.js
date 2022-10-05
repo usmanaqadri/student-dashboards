@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import Header from "../Headers/RootHeader/Header";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import Verification from "../../User-Pages/Verification";
 
-export class Edit extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        Edit
-      </div>
-    );
-  }
+export default function Edit() {
+  Verification();
+  return (
+    <div>
+      <Header />
+      Edit
+    </div>
+  );
 }
-
-export default Edit;
