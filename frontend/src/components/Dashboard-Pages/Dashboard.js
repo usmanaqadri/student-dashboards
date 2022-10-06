@@ -42,6 +42,20 @@ export class Dashboard extends Component {
       });
   };
 
+  handleDelete = () => {
+    const { id } = this.props.params;
+    fetch(
+      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`,
+      {
+        method: "DELETE",
+      }
+    ).then((response) => {
+      if (response.status === 200) {
+        window.location.href = window.location.href.split(id)[0];
+      }
+    });
+  };
+
   render() {
     return (
       <>
@@ -70,6 +84,9 @@ export class Dashboard extends Component {
           </table>
           <div className="redirect">
             <Link to={`/${this.props.params.id}/edit`}>Edit</Link>
+            <Link onClick={this.handleDelete} to={`/`}>
+              Delete
+            </Link>
           </div>
         </div>
       </>
