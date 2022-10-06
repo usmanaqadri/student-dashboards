@@ -50,12 +50,13 @@ function Signin() {
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label htmlFor="email">Email</label>
+    <div className="signinpage">
+      <h1 className="welcome">Welcome to Student Dashboards!</h1>
+      <h2 className="signinlabel">Sign In</h2>
+      <form className="signinform" onSubmit={(e) => handleSubmit(e)}>
+        <div className="signindiv">
           <input
+            className="signininput"
             type="email"
             name="email"
             placeholder="Email"
@@ -64,9 +65,9 @@ function Signin() {
             }
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="signindiv">
           <input
+            className="signininput"
             type="password"
             name="password"
             placeholder="Password"
@@ -75,9 +76,16 @@ function Signin() {
             }
           />
         </div>
-        <button type="submit">Submit</button>
-        <span>
-          Don't have an account? <Link to="/register" className="register">Register</Link>
+        <div className="submitdiv">
+          <button type="submit" className="submitbutton">
+            Submit
+          </button>
+        </div>
+        <span className="registertext">
+          Don't have an account?{""}
+          <Link to="/register" className="registerbutton">
+            Register
+          </Link>
         </span>
       </form>
       <ToastContainer />
