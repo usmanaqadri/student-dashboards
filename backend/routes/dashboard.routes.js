@@ -6,9 +6,9 @@ const router = express.Router();
 const ctrls = require("../controllers");
 
 //GET route to home page that will redirect user to a log in page
-router.get("/", (req, res) => {
-  res.redirect("/users/signin");
-});
+// router.get("/", (req, res) => {
+//   res.redirect("/users/signin");
+// });
 
 //GET route to show index of students in class
 router.get("/studentDashboard", ctrls.dashboards.index);
@@ -19,9 +19,7 @@ router.get("/studentDashboard/new", (req, res) => {
 });
 
 //GET route to render a page to show a student and their hmk,attendence,projects
-router.get("/studentDashboard/:id", (req, res) => {
-  res.send("this is where the students info is held");
-});
+router.get("/studentDashboard/:id", ctrls.dashboards.show);
 
 //GET route to edit a current student
 router.get("/studentDashboard/:id/edit", (req, res) => {

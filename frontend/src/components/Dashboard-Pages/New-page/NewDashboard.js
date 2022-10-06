@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "../Headers/RootHeader/Header";
+
 
 export class NewDashboard extends Component {
   constructor(props) {
@@ -42,8 +42,6 @@ export class NewDashboard extends Component {
   render() {
     return (
       <div>
-        <Header />
-        NewDashboard
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Student Name:</label>
           <input

@@ -7,30 +7,38 @@ const cors = require("cors");
 require("dotenv").config();
 const session = require("express-session");
 const SESSION_SECRET = process.env.SESSION_SECRET;
+const cookieParser = require("cookie-parser");
 //port connection
 const PORT = process.env.BACKEND_PORT || 3000;
 
 //adding whitelist
-const whitelist = [
-  `http://localhost:${PORT}`,
-  `http://localhost:${process.env.FRONTEND_PORT}`,
-];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin) {
-      //for bypassing postman req with  no origin
-      return callback(null, true);
-    }
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// const whitelist = [
+//   `http://localhost:${PORT}`,
+//   `http://localhost:${process.env.FRONTEND_PORT}`,
+// ];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin) {
+//       //for bypassing postman req with  no origin
+//       return callback(null, true);
+//     }
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
 
 //middleware
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: ["http://localhost:3006"],
+    methods: ["GET", "POST", "PUT"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -40,10 +48,11 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   next();
+// });
+app.use(cookieParser());
 
 const routes = require("./routes");
 

@@ -26,6 +26,25 @@ td {
     padding: 10px 10px;
 }
 
+.student-dashboard {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
 .student-dashboard a {
-    color: black
+    color: rgb(120, 89, 120);
+    text-decoration: none;
+}
+
+.register {
+    color: blue;
+}
+
+.signin {
+    color: blue;
+}
+
+.redirect a {
+    color: black !important;
 }
