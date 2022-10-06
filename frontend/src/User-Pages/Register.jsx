@@ -43,12 +43,13 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <h2>Register Account</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label htmlFor="email">Email</label>
+    <div className="signinpage">
+      <h1 className="welcome">Welcome to Student Dashboards!</h1>
+      <h2 className="signinlabel">Register Account</h2>
+      <form className="signinform" onSubmit={(e) => handleSubmit(e)}>
+        <div className="signindiv">
           <input
+            className="signininput"
             type="email"
             name="email"
             placeholder="Email"
@@ -57,9 +58,9 @@ export default function Register() {
             }
           />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="signindiv">
           <input
+            className="signininput"
             type="password"
             name="password"
             placeholder="Password"
@@ -68,9 +69,16 @@ export default function Register() {
             }
           />
         </div>
-        <button type="submit">Submit</button>
-        <span>
-          Already have an account? <Link to="/signin" className="signin">Sign In</Link>
+        <div className="submitdiv">
+          <button type="submit" className="submitbutton">
+            Submit
+          </button>
+        </div>
+        <span className="registertext">
+          Already have an account?{" "}
+          <Link to="/signin" className="registerbutton">
+            Sign In
+          </Link>
         </span>
       </form>
       <ToastContainer />
