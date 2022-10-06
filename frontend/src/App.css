@@ -44,3 +44,7 @@ td {
 .signin {
     color: blue;
 }
+
+.redirect a {
+    color: black !important;
+}
