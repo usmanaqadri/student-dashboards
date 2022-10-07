@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
   baseUrl = "https://student-dashboards.herokuapp.com";
   app.use(express.static("build"));
   app.get("*", (req, res) => {
-    req.sendFile(path.resolve(__dirname, "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
   });
 }
 
