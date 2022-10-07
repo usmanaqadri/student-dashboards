@@ -9,10 +9,13 @@ const session = require("express-session");
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const cookieParser = require("cookie-parser");
 const path = require("path");
+// base URL
+let baseUrl = "localhost";
 //port connection
-const PORT = process.env.BACKEND_PORT || 3000;
+const PORT = process.env.PORT || 3009;
 
 if (process.env.NODE_ENV === "production") {
+  baseUrl = "https://student-dashboards.herokuapp.com";
   app.use(express.static("build"));
   app.get("*", (req, res) => {
     req.sendFile(path.resolve(__dirname, "build", "index.html"));
@@ -42,7 +45,10 @@ if (process.env.NODE_ENV === "production") {
 // app.use(cors(corsOptions));
 app.use(
   cors({
-    origin: ["http://localhost:3006"],
+    origin: [
+      "http://localhost:3006",
+      "https://student-dashboards.herokuapp.com",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   })
@@ -73,5 +79,5 @@ app.use("/", require("./routes/users.routes"));
 
 //app.listen for port
 app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}`);
+  console.log(`Listening on ${baseUrl}:${PORT}`);
 });
