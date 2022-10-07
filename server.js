@@ -14,14 +14,6 @@ let baseUrl = "localhost";
 //port connection
 const PORT = process.env.PORT || 3009;
 
-if (process.env.NODE_ENV === "production") {
-  baseUrl = "https://student-dashboards.herokuapp.com";
-  app.use(express.static("build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
-  });
-}
-
 //adding whitelist
 // const whitelist = [
 //   `http://localhost:${PORT}`,
@@ -76,6 +68,16 @@ require("./config/db.connections");
 //conection to routes
 app.use("/", require("./routes/dashboard.routes"));
 app.use("/", require("./routes/users.routes"));
+
+//using build folder
+
+if (process.env.NODE_ENV === "production") {
+  baseUrl = "https://student-dashboards.herokuapp.com";
+  app.use(express.static(path.join(__dirname, "build")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
 
 //app.listen for port
 app.listen(PORT, () => {
