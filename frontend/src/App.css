@@ -1,7 +1,3 @@
-* {
-    color: #6FFFE9;
-}
-
 header {
     background-color: #3A506B;
     display: flex;
@@ -43,6 +39,7 @@ header {
     height: 30px;
     border-radius: 3px;
     font-size: 20px;
+    color: black;
 }
 
 .submitdiv {
@@ -51,6 +48,9 @@ header {
     justify-content: center;
     margin: 20px;
     
+}
+.Toastify__toast-body {
+    color: black !important;
 }
 
 .submitbutton {
@@ -85,6 +85,7 @@ header {
 }
 
 .personal-dashboard {
+    color: #6FFFE9;
     display: flex;
     flex-direction: column;
     text-align: center;

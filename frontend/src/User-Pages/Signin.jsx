@@ -104,7 +104,8 @@ function Signin() {
           </Link>
         </span>
       </form>
-      <ToastContainer /> {/* toast container pop up */}
+      <ToastContainer style={{ color: "black" }} />{" "}
+      {/* toast container pop up */}
     </div>
   );
 }
