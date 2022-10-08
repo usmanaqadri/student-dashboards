@@ -10,9 +10,12 @@ const SESSION_SECRET = process.env.SESSION_SECRET;
 const cookieParser = require("cookie-parser");
 const path = require("path");
 // base URL
-let baseUrl = "localhost";
+let baseUrl =
+  process.env.NODE_ENV === "development"
+    ? "localhost"
+    : "https://student-dashboards.herokuapp.com";
 //port connection
-const PORT = process.env.PORT || 3009;
+const PORT = process.env.PORT || process.env.BACKEND_PORT || 3009;
 
 //adding whitelist
 // const whitelist = [
