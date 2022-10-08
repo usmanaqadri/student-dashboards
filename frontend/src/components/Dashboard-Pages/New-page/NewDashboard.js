@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 export class NewDashboard extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,9 @@ export class NewDashboard extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     fetch(
-      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard`,
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/`
+        : `https://student-dashboards.herokuapp.com/studentDashboard/`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -34,7 +35,7 @@ export class NewDashboard extends Component {
         },
       }
     ).then((response) => {
-      if(response.status === 200) {
+      if (response.status === 200) {
         window.location.href = window.location.href.split("new")[0];
       }
     });

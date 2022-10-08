@@ -23,7 +23,9 @@ export class Dashboard extends Component {
 
   getDashboard = (id) => {
     fetch(
-      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`
+        : `https://student-dashboards.herokuapp.com/studentDashboard/${id}`
     )
       .then((res) => {
         if (res.status === 200) {
@@ -45,7 +47,9 @@ export class Dashboard extends Component {
   handleDelete = () => {
     const { id } = this.props.params;
     fetch(
-      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`,
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`
+        : `https://student-dashboards.herokuapp.com/studentDashboard/${id}`,
       {
         method: "DELETE",
       }

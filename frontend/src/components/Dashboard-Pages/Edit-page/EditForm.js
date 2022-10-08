@@ -53,7 +53,9 @@ export class EditForm extends Component {
     event.preventDefault();
     const { id } = this.props.params;
     fetch(
-      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`,
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard/${id}`
+        : `https://student-dashboards.herokuapp.com/studentDashboard/${id}`,
       {
         method: "PUT",
         body: JSON.stringify({

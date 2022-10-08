@@ -7,9 +7,15 @@ const cors = require("cors");
 require("dotenv").config();
 const session = require("express-session");
 const SESSION_SECRET = process.env.SESSION_SECRET;
-const cookieParser = require("cookie-parser"); // cookie parser is a middleware program that the server needs to read the cookie info that is in our authentication programs. Without this, the server will not know what responses or priveleges the user will have to use with our app. Express and node do not do this for you which is why the node package is convenient to have.
+const cookieParser = require("cookie-parser");
+const path = require("path");
+// base URL
+let baseUrl =
+  process.env.NODE_ENV === "development"
+    ? "localhost"
+    : "https://student-dashboards.herokuapp.com";
 //port connection
-const PORT = process.env.BACKEND_PORT || 3000;
+const PORT = process.env.PORT || process.env.BACKEND_PORT || 3009;
 
 //adding whitelist
 // const whitelist = [
@@ -34,7 +40,10 @@ const PORT = process.env.BACKEND_PORT || 3000;
 // app.use(cors(corsOptions));
 app.use(
   cors({
-    origin: ["http://localhost:3006"],
+    origin: [
+      "http://localhost:3006",
+      "https://student-dashboards.herokuapp.com",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -63,7 +72,17 @@ require("./config/db.connections");
 app.use("/", require("./routes/dashboard.routes"));
 app.use("/", require("./routes/users.routes"));
 
+//using build folder
+
+if (process.env.NODE_ENV === "production") {
+  baseUrl = "https://student-dashboards.herokuapp.com";
+  app.use(express.static(path.join(__dirname, "build")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
+
 //app.listen for port
 app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}`);
+  console.log(`Listening on ${baseUrl}:${PORT}`);
 });

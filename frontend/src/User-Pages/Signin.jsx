@@ -35,7 +35,9 @@ function Signin() {
       // try hook
       const { data } = await axios.post(
         // data will be destructured when the post route is hit at our backend's sign in route. We already have our sign in function running in our backend which is what will run when this route is hit. This function will wait until the data is used in that function to determine an outcome.
-        "http://localhost:3009/Signin", // our sign in route that axios will use
+        process.env.NODE_ENV === "development"
+          ? `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/Signin`
+          : "https://student-dashboards.herokuapp.com/Signin", // our sign in route that axios will use
         {
           ...values, // the data that the sign in function in our backend will use. In this case it is the values submitted in the form, which are our email and password stated above
         },
