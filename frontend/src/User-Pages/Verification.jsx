@@ -12,7 +12,9 @@ export default function Verification() {
         navigate("/Signin");
       } else {
         const { data } = await axios.post(
-          "http://localhost:3009",
+          process.env.NODE_ENV === "development"
+            ? `http://localhost:${process.env.REACT_APP_BACKEND_PORT}`
+            : "https://student-dashboards.herokuapp.com/",
           {},
           { withCredentials: true }
         );
