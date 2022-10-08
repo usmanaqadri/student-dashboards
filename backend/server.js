@@ -7,7 +7,7 @@ const cors = require("cors");
 require("dotenv").config();
 const session = require("express-session");
 const SESSION_SECRET = process.env.SESSION_SECRET;
-const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser"); // cookie parser is a middleware program that the server needs to read the cookie info that is in our authentication programs. Without this, the server will not know what responses or priveleges the user will have to use with our app. Express and node do not do this for you which is why the node package is convenient to have.
 //port connection
 const PORT = process.env.BACKEND_PORT || 3000;
 
