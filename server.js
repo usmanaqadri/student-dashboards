@@ -44,7 +44,7 @@ app.use(
       "http://localhost:3006",
       "https://student-dashboards.herokuapp.com",
     ],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
