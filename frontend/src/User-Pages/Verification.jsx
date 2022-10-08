@@ -1,7 +1,7 @@
-import React, { useEffect } from "react"; // Use effect is a hook that tells react your component needs to do something after it renders instead of just setting it and forgetting it. We can use this instead of making two function for setting a state and updating that state.
+import { useEffect } from "react"; // Use effect is a hook that tells react your component needs to do something after it renders instead of just setting it and forgetting it. We can use this instead of making two function for setting a state and updating that state.
 import { useNavigate } from "react-router-dom"; // react router allows you to use a react app like a multi page app instead of multiple components. With use navigate, you can use navigate to bring the client to the specific page.
 import { useCookies } from "react-cookie"; // another node package that can help set cookies and use them in your react app. We will need this because cookies are what makes our authentication work in our react app.
-import axios from "axios"; // axios is another npm that sends requests to routes a lot easier and also is easier to write CRUD operations.
+import axios from "axios"; // axios is another npm package that sends requests to routes a lot easier and also is easier to write CRUD operations--similar to fetch
 
 export default function Verification() {
   const navigate = useNavigate(); // variable that allows us to navigate REST routes
