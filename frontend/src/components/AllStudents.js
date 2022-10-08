@@ -14,7 +14,9 @@ export class AllStudents extends Component {
 
   getDashboard = () => {
     fetch(
-      `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard`
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:${process.env.REACT_APP_BACKEND_PORT}/studentDashboard`
+        : "https://student-dashboards.herokuapp.com/studentDashboard"
     )
       .then((res) => {
         if (res.status === 200) {
