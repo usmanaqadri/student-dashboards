@@ -63,22 +63,20 @@ export class Dashboard extends Component {
   render() {
     return (
       <>
-        <div className="studentdashboard">
-          {/* <h1>{dashboard.studentName}</h1> */}
-          <table>
+        <div className="personal-dashboard">
+          <h1>{this.state.studentName}'s Dashboard</h1>
+          <table border="0" cellspacing="0" cellpadding="0">
             <tbody>
               <tr>
-                <h1>{this.state.studentName}'s Dashboard</h1>
-                {/* <td>{dashboard.studentName}</td> */}
-                <td>
-                  <h3>Enrolled:</h3>
+                <td width={"33%"}>
+                  <h3>Status</h3>
                   {this.state.isEnrolled ? "Enrolled" : "Dropout"}
                 </td>
-                <td>
-                  <h3>Class:</h3> {this.state.className}
+                <td width={"33%"}>
+                  <h3>Class</h3> {this.state.className}
                 </td>
-                <td>
-                  <h3>Assignments:</h3>
+                <td width={"33%"}>
+                  <h3>Current Grade</h3>
                   {this.state.assignments.length === 0
                     ? "No assignments yet"
                     : "something else"}
@@ -87,8 +85,10 @@ export class Dashboard extends Component {
             </tbody>
           </table>
           <div className="redirect">
-            <Link to={`/${this.props.params.id}/edit`}>Edit</Link>
-            <Link onClick={this.handleDelete} to={`/`}>
+            <Link className="edit" to={`/${this.props.params.id}/edit`}>
+              Edit
+            </Link>
+            <Link className="delete" onClick={this.handleDelete} to={`/`}>
               Delete
             </Link>
           </div>

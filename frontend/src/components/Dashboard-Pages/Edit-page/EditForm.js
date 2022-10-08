@@ -75,33 +75,42 @@ export class EditForm extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="personal-dashboard">
         <h1>Edit {this.state.studentName}'s Dashboard</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="studentName">Student Name: </label>
-          <input
-            type="text"
-            id="studentName"
-            name="studentName"
-            onChange={(event) => this.handleChange(event)}
-            value={this.state.studentName}
-          />
-          <label htmlFor="className">Class Name: </label>
-          <input
-            type="text"
-            id="className"
-            name="className"
-            onChange={(event) => this.handleChange(event)}
-            value={this.state.className}
-          />
-          <label htmlFor="isEnrolled">Enrolled?: </label>
-          <input
-            type="checkbox"
-            id="isEnrolled"
-            name="isEnrolled"
-            onChange={(event) => this.handleChange(event)}
-            checked={this.state.isEnrolled}
-          />
+        <form className="dashboard-form" onSubmit={this.handleSubmit}>
+          <label>
+            <p>Student Name:</p>
+            <input
+              className="signininput"
+              type="text"
+              id="studentName"
+              name="studentName"
+              onChange={(event) => this.handleChange(event)}
+              value={this.state.studentName}
+            />
+          </label>
+          <label>
+            <p>Class Name:</p>
+            <input
+              className="signininput"
+              type="text"
+              id="className"
+              name="className"
+              onChange={(event) => this.handleChange(event)}
+              value={this.state.className}
+            />
+          </label>
+          <label>
+            <p>Enrolled?:</p>
+            <input
+              className="signininput"
+              type="checkbox"
+              id="isEnrolled"
+              name="isEnrolled"
+              onChange={(event) => this.handleChange(event)}
+              checked={this.state.isEnrolled}
+            />
+          </label>
           <button>Submit your changes</button>
         </form>
       </div>
