@@ -9,15 +9,13 @@ const session = require("express-session");
 const SESSION_SECRET = process.env.SESSION_SECRET;
 const cookieParser = require("cookie-parser");
 const path = require("path");
+// base URL
+let baseUrl =
+  process.env.NODE_ENV === "development"
+    ? "localhost"
+    : "https://student-dashboards.herokuapp.com";
 //port connection
-const PORT = process.env.BACKEND_PORT || 3000;
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
-  app.get("*", (req, res) => {
-    req.sendFile(path.resolve(__dirname, "build", "index.html"));
-  });
-}
+const PORT = process.env.PORT || process.env.BACKEND_PORT || 3009;
 
 //adding whitelist
 // const whitelist = [
@@ -42,8 +40,11 @@ if (process.env.NODE_ENV === "production") {
 // app.use(cors(corsOptions));
 app.use(
   cors({
-    origin: ["http://localhost:3006"],
-    methods: ["GET", "POST"],
+    origin: [
+      "http://localhost:3006",
+      "https://student-dashboards.herokuapp.com",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
@@ -71,7 +72,17 @@ require("./config/db.connections");
 app.use("/", require("./routes/dashboard.routes"));
 app.use("/", require("./routes/users.routes"));
 
+//using build folder
+
+if (process.env.NODE_ENV === "production") {
+  baseUrl = "https://student-dashboards.herokuapp.com";
+  app.use(express.static(path.join(__dirname, "build")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
+
 //app.listen for port
 app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}`);
+  console.log(`Listening on ${baseUrl}:${PORT}`);
 });

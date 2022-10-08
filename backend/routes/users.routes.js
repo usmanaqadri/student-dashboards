@@ -5,12 +5,13 @@ const router = express.Router();
 
 const ctrls = require("../controllers");
 
-//GET route brings user to a register page
+//POST route brings user to a register page and calls the register function
 router.post("/register", ctrls.users.register);
 
-//GET route to home page that will redirect user to a log in page
+//POST route to sign in page that calls sign in function
 router.post("/signin", ctrls.users.signIn);
 
+//POST route to home page that calls the check user function
 router.post("/", ctrls.users.checkUser);
 
 module.exports = router;

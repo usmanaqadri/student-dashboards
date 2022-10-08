@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Header from "./Headers/RootHeader/Header";
 import AllStudents from "./AllStudents";
 import Verification from "../User-Pages/Verification";
