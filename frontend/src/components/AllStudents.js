@@ -33,11 +33,11 @@ export class AllStudents extends Component {
     return (
       <div className="student-dashboard">
         <h1>Students</h1>
-        <table>
+        <table border="0" cellspacing="0" cellpadding="0">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Subject</th>
+              <th>Class</th>
               <th>Status</th>
               <th>Current Grade</th>
             </tr>

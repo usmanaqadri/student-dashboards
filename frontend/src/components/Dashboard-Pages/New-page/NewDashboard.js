@@ -42,37 +42,44 @@ export class NewDashboard extends Component {
   };
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Student Name:</label>
-          <input
-            type="text"
-            id="studentName"
-            name="studentName"
-            required
-            value={this.state.studentName}
-            onChange={(e) => this.handleChange(e)}
-            placeholder="Students Name"
-          />
-          <label htmlFor="name">Class:</label>
-          <input
-            type="text"
-            required
-            name="className"
-            value={this.state.className}
-            onChange={(e) => this.handleChange(e)}
-            placeholder="Class Name"
-          />
-          <label htmlFor="name">Enrolled:</label>
-          <input
-            type="checkbox"
-            // required
-            name="isEnrolled"
-            checked={this.state.isEnrolled}
-            onChange={(e) => this.handleChange(e)}
-            placeholder="Are they Enrolled?"
-          />
-          <input type="submit" value="Add Student" />
+      <div className="personal-dashboard">
+        <h1>Create a new student</h1>
+        <form className="dashboard-form" onSubmit={this.handleSubmit}>
+          <label>
+            <p>Student Name:</p>
+            <input
+              type="text"
+              id="studentName"
+              name="studentName"
+              required
+              value={this.state.studentName}
+              onChange={(e) => this.handleChange(e)}
+              placeholder="Students Name"
+            />
+          </label>
+          <label>
+            <p>Class Name:</p>
+            <input
+              type="text"
+              required
+              name="className"
+              value={this.state.className}
+              onChange={(e) => this.handleChange(e)}
+              placeholder="Class Name"
+            />
+          </label>
+          <label>
+            <p>Enrolled:</p>
+            <input
+              type="checkbox"
+              // required
+              name="isEnrolled"
+              checked={this.state.isEnrolled}
+              onChange={(e) => this.handleChange(e)}
+              placeholder="Are they Enrolled?"
+            />
+          </label>
+          <button>Add student</button>
         </form>
       </div>
     );
