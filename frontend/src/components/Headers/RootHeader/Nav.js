@@ -15,13 +15,19 @@ export default function Nav() {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link className="navbar-links" to="/">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/new">New Dashboard</Link>
+          <Link className="navbar-links" to="/new">
+            New Dashboard
+          </Link>
         </li>
         <li>
-          <button onClick={signOut}>Log Out</button>{" "}
+          <button className="navbar-links" onClick={signOut}>
+            Log Out
+          </button>{" "}
           {/* sign out button that runs sign out function on click */}
         </li>
       </ul>

@@ -1,17 +1,17 @@
 header {
-    background-color: rgb(154, 105, 223);
+    background-color: #3A506B;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: white;
 }
 
 .welcome {
-    background: linear-gradient(to right, orange, yellow, green, cyan, blue, violet);
+    background: linear-gradient(to right, #ff0028, #ff8928, #fff685, #f75990, #00DDFF, #0049B7, #7d3cff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 60px;
+    font-size: 4em;
     margin-top: 100px;
+    text-align: center;
 }
 
 .signinpage {
@@ -39,6 +39,7 @@ header {
     height: 30px;
     border-radius: 3px;
     font-size: 20px;
+    color: black;
 }
 
 .submitdiv {
@@ -47,6 +48,9 @@ header {
     justify-content: center;
     margin: 20px;
     
+}
+.Toastify__toast-body {
+    color: black !important;
 }
 
 .submitbutton {
@@ -65,6 +69,7 @@ header {
     justify-content: center;
     margin: 20px;
     font-size: 30px;
+    color: rgb(100, 100, 100);
 }
 
 .registerbutton {
@@ -76,6 +81,74 @@ header {
     display: flex;
     flex-direction: column;
     text-align: center;
+    color: #6FFFE9
+}
+
+.personal-dashboard {
+    color: #6FFFE9;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.redirect {
+    margin-top: 30px;
+    
+}
+
+.redirect a {
+    margin: auto 10px;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 20px;
+    transition: 1s;
+}
+
+.redirect a:hover {
+    transition: 1s;
+    filter: brightness(190%);
+}
+
+.edit {
+    background-color: #362A89;
+}
+
+.delete {
+    background-color: #e02c26;
+}
+
+.dashboard-form {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-form label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.dashboard-form label p {
+    width: 90%
+}
+
+.dashboard-form label input {
+    margin: 0 20px;
+    width: 100%;
+    color: black;
+    padding: 10px;
+}
+
+.dashboard-form button {
+    color: black;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .student-dashboard a {
@@ -98,7 +171,24 @@ a {
     color: white;
 }
 
+table {
+    text-align: center;
+    width: 100vw;
+}
+
 td {
-    border-bottom: 1px solid purple;
-    padding: 10px 10px;
+    border-bottom: 1px solid #ECF39E;
+    padding: 20px 0;
+    margin: auto 0;
+}
+
+.navbar-links {
+    text-decoration: none;
+    background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+    color: bisque;
+	
 }
